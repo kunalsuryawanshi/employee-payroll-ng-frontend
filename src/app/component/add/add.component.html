@@ -1,0 +1,96 @@
+<app-header></app-header>
+<div class="form-content">
+    <form class="form" [formGroup]="employeeForm">
+        <div class="form-head">Employee Payroll Form</div>
+        <div class="row-content">
+            <label class="label text" for="name">Name</label>
+            <mat-form-field class="input" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" id="name" name="name" placeholder="Enter Your Name" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row-content">
+            <label for="profile" class="label text">Profile Image</label>
+            <div class="profile-radio-content">
+                <label>
+                    <input class="form-check-input" type="radio" id="profile1" name="imagePath"
+                        value="https://github.com/kunalsuryawanshi/Employee-Payroll-App/blob/master/assets/profile-images/Ellipse%20-3.png?raw=true"
+                        formControlName="imagePath">
+                    <img class="profile" src="../assets/profile-images/Ellipse -3.png" id="image1" alt="">
+                </label>
+                <label>
+                    <input class="form-check-input" type="radio" id="profile2" name="imagePath"
+                        value="https://github.com/kunalsuryawanshi/Employee-Payroll-App/blob/master/assets/profile-images/Ellipse%20-1.png?raw=true"
+                        formControlName="imagePath">
+                    <img class="profile" src="../assets/profile-images/Ellipse -1.png" id="image2" alt="">
+                </label>
+                <label>
+                    <input class="form-check-input" type="radio" id="profile3" name="imagePath"
+                        value="https://github.com/kunalsuryawanshi/Employee-Payroll-App/blob/master/assets/profile-images/Ellipse%20-8.png?raw=true"
+                        formControlName="imagePath">
+                    <img class="profile" src="../assets/profile-images/Ellipse -8.png" id="image3" alt="">
+                </label>
+                <label>
+                    <input class="form-check-input" type="radio" id="profile4" name="imagePath"
+                        value="https://github.com/kunalsuryawanshi/Employee-Payroll-App/blob/master/assets/profile-images/Ellipse%20-7.png?raw=true"
+                        formControlName="imagePath">
+                    <img class="profile" id="image4" src="../assets/profile-images/Ellipse -7.png" alt="">
+                </label>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="gender">Gender</label>
+            <div>
+                <input class="form-check-input" type="radio" id="male" name="gender" value="Male"
+                    formControlName="gender">
+                <label for="male">Male</label>
+                <input class="form-check-input" type="radio" id="female" name="gender" value="Female"
+                    formControlName="gender">
+                <label for="female">Female</label>
+            </div>
+        </div>
+        <div class="row-content">
+
+            <label class="label text" for="department">Department</label>
+            <div *ngFor="let department of departments">
+                <input class="form-check-input" type="checkbox" name="{{department.value}}" value="{{department.value}}"
+                    (change)="onChange($event)">
+                <label>{{department.value}}</label>
+            </div>
+
+        </div>
+
+        <div class="row-content">
+            <label class="label text" for="salary">Choose Your Salary </label>
+            <input class="input" type="range" name="salary" id="salary" tickInterval="1000" step="100" min="300000"
+                max="500000" aria-label="units" formControlName="salary">
+        </div>
+        <div class="row-content">
+            <label class="label text" for="startDate">Start Date</label>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [max]="todayDate" [matDatepicker]="picker" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="notes">Notes</label>
+            <mat-form-field class="example-full-width input" appearance="fill">
+                <mat-label>Notes</mat-label>
+                <textarea matInput class="input" name="Notes" id="notes" placeholder="" style="height: 100px;"
+                    formControlName="notes"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="buttonParent">
+            <div class="submit-reset">
+                <button mat-raised-button type="submit" class="button submitButton" id="submitButton" color="primary"
+                    (click)="submitHandler()" [disabled]="employeeForm.invalid">Submit</button>
+                <button mat-raised-button type="reset" class="button resetButton">Reset</button>
+            </div>
+        </div>
+        <!-- {{employeeForm.value|json}} -->
+    </form>
+</div>

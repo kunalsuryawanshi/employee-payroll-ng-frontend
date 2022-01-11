@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="container col-10">
+    <div class="main-head">
+        <div class="head">
+            <h1>Employee Details</h1>
+        </div>
+        <div class="button">
+            <a routerLink="/add">
+                <button class="add-btn">Add Employee</button>
+            </a>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th></th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Start Date</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>
+                    <img src="{{employee.imagePath}}" alt="">
+                </td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.gender}}</td>
+                <td>{{employee.departments}}</td>
+                <td>&#8377; {{employee.salary}}</td>
+                <td>{{employee.startDate}}</td>
+                <td>
+                    <div class="btn">
+                        <button (click)="updateEmployee(employee.id)">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <button (click)="deleteEmployee(employee.id)">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
